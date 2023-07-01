@@ -172,7 +172,36 @@
                             </select>
                         </div>
 
-                        <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                        <!-- Calification -->
+                        <div v-show="skill_id != ''" class="form-group mb-6">
+                            <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">
+                                Expertice
+                            </label>
+                            <select class="form-select appearance-none
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding bg-no-repeat
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                                v-model="calification">
+                                    
+                                    <option value="">Selecciona el nivel de expertice para la skill seleccionada</option>
+                                    <option v-for="(item, index) in 5" :key="index" :value="item">
+                                        {{item}}
+                                    </option>
+                            </select>
+                        </div>
+
+                        <button v-if="skill_id != ''" type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                             @click="addSkill()">
                                 Agregar skill
                         </button>
@@ -228,7 +257,7 @@
 
 <script>
 
-import { responseAxios } from './../../helper'
+import { responseAxios, sweetInfo } from './../../helper'
 
 export default {
     data(){
@@ -245,7 +274,7 @@ export default {
             error_mesagge : "",
             error : false,
             success : false,
-            calification : 5,
+            calification : "",
         }
     },
     mounted(){
@@ -269,6 +298,11 @@ export default {
 
             if(!this.skillIsPresent(this.skill_id)){
 
+                if(this.calification == ""){
+                    sweetInfo('Selecciona un rango de expertice para la skill seleccionada', '', 'info', 2600);
+                    return false;
+                }
+
                 let skill = this.skills.filter((item) => item.id == this.skill_id);
 
                 if(skill.length > 0){
@@ -287,6 +321,10 @@ export default {
                 
 
                 
+
+            }else{
+
+                sweetInfo('Esta skill ya se encuentra agregada', '', 'info', 2600);
 
             }
 

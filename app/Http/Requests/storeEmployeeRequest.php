@@ -34,14 +34,14 @@ class storeEmployeeRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
-            'name' => 'Nombre',
-            'job'  => 'Puesto',
-            'birthdate' => 'Fecha de nacimiento',
-            'residence' => 'Domicilio',
-            'skills' => 'Skills'
+            'name' => 'nombre',
+            'job'  => 'puesto',
+            'birthdate' => 'fecha de nacimiento',
+            'residence' => 'domicilio',
+            'skills' => 'skills'
         ];
     }
 }
