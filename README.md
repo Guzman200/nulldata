@@ -7,14 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Instalación del proyecto
+## Correr proyecto en local
 
 Esta es una aplicacion web desarrollada con Laravel y Vue.js mediante una comunicación API REST, a continuación detallamos los pasos para la instalación de esta aplicación:
 
 - Copiar .env.example a .env
+- Configurar conexión a la base de datos
 - Ejecutar npm i
 - Ejecutar composer i
 - APP_URL (.env) Colocar la ruta en donde esta corriendo nuestra app
-- Crear BD MySQL con nombre app_tareas 
+- Crear BD MySQL con nombre null_data 
 - Compilar los archivos js y .vue con npm run dev
+
+1. Configurar varia
+## Deploy proyecto
+
+Este proyecto lo puedes probar en https://tester.eltrueke.com.mx/employees
+
+## Para correr los test unitarios
+
+php artisan test
 
