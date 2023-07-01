@@ -18,12 +18,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        UserLogin::class => [
-            RegistrarIngreso::class
-        ],
-        UserLogout::class => [
-            RegistrarSalida::class
-        ]
+        
     ];
 
     /**

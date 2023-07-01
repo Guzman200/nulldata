@@ -9,7 +9,7 @@ export const router = createRouter({
     routes: [
         { path: '/employees', component: TableEmployeeComponent, name : 'employee.index' },
         { path: '/new-employee', component: CreateEmployeeComponent, name: 'employee.new' },
-        { path: '/edit-employee/:id', component: EditEmployeeComponent, name: 'employee.edit' }
+        { path: '/employee/:id', component: EditEmployeeComponent, name: 'employee.show' }
     ]
 })
 

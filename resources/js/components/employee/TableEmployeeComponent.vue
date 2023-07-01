@@ -66,17 +66,15 @@
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <span v-for="(item, index) in employee.skills" :key="index"
-                                        class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                                        class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs ml-2">
                                         {{item.skill.name}} - {{item.calification}}
                                     </span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
                                         
-                                        <div @click="editEmployee(employee)" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                            </svg>
+                                        <div @click="showEmployee(employee)" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                            <svg class="h-5 w-5 flex-none stroke-sky-500" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M17.25 10c0 1-1.75 6.25-7.25 6.25S2.75 11 2.75 10 4.5 3.75 10 3.75 17.25 9 17.25 10Z"></path><circle cx="10" cy="10" r="2.25"></circle></svg>
                                         </div>
                                         <div @click="deleteEmployee(employee)" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,6 +93,9 @@
 </template>
 
 <script>
+
+import { responseAxios } from './../../helper';
+
 export default {
     data(){
         return {
@@ -103,10 +104,10 @@ export default {
         }
     },
     mounted(){
-        this.getEmployee();
+        this.getEmployees();
     },
     methods : {
-        getEmployee(){
+        getEmployees(){
 
             this.loading = true;
             
@@ -119,10 +120,15 @@ export default {
             })
 
         },
-        deleteNote(note){
+        deleteEmployee(employee){
             
-            axios.delete('/api/notes/' + note.id).then( (response) => {
-                this.getNotes();
+            axios.delete('/api/v1/employee/' + employee.id).then( (response) => {
+
+                responseAxios(response)
+
+                this.getEmployees();
+
+
             }).catch( ({response}) => {
                 console.log(response);
             }).then(() => {
@@ -133,8 +139,8 @@ export default {
         toNewEmployee(){
             this.$router.push({name : 'employee.new'})
         },
-        editNote(note){
-            this.$router.push({name : 'edit-note', params : {id : note.id}})
+        showEmployee(employee){
+            this.$router.push({name : 'employee.show', params : {id : employee.id}})
         }
     }
 }

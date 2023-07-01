@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function () {
+
+    Route::get('employee', [EmployeeController::class, 'index']);
+    Route::get('employee/{employee}', [EmployeeController::class, 'show']);
+    Route::post('employee', [EmployeeController::class, 'store']);
+    Route::delete('employee/{employee}', [EmployeeController::class, 'delete']);
+
+    Route::get('skills', [SkillController::class, 'index']);
+
 });
