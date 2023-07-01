@@ -24,13 +24,14 @@ class storeEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => 'required',
-            'email'       => 'required|email|unique:users,email',
-            'job'         => 'required',
-            'birthdate'   => 'required|date_format:Y-m-d',
-            'residence'   => 'required',
-            'skills'      => 'array|required',
-            'skills.*.id' => 'present|exists:skills,id'
+            'name'                  => 'required',
+            'email'                 => 'required|email|unique:users,email',
+            'job'                   => 'required',
+            'birthdate'             => 'required|date_format:Y-m-d',
+            'residence'             => 'required',
+            'skills'                => 'array|required',
+            'skills.*.id'           => 'present|exists:skills,id',
+            'skills.*.calification' => 'present'
         ];
     }
 

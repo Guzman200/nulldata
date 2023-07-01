@@ -71,6 +71,10 @@ class EmployeeController extends Controller
         return response()->json(['message' => 'Empleyee created'], 201);
     }
 
+    /**
+     * 
+     * Delete employee
+     */
     public function delete(User $employee)
     {
 
@@ -81,6 +85,9 @@ class EmployeeController extends Controller
 
     }
 
+    /**
+     * Show employee by id
+     */
     public function show(User $employee)
     {
 
