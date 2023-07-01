@@ -244,7 +244,8 @@ export default {
             skill_adds : [],
             error_mesagge : "",
             error : false,
-            success : false
+            success : false,
+            calification : 5,
         }
     },
     mounted(){
@@ -275,7 +276,11 @@ export default {
                     console.log('Agregando skill');
                     console.log(skill[0]);
 
-                    this.skill_adds.push(skill[0])
+                    this.skill_adds.push({
+                        id : skill[0].id,
+                        calification : this.calification,
+                        name : skill[0].name
+                    })
 
                 }
 
@@ -306,29 +311,6 @@ export default {
 
         },
         saveEmployee(){
-
-            this.error = false;
-            this.success = false;
-
-            /*if(this.skill_adds.length == 0){
-                this.error = true;
-                this.error_mesagge = "Agregar por lo menos una skill al empleado";
-                return false;
-            }
-
-            if(this.nombre == ""){
-                this.error = true;
-                this.error_mesagge = "El campo cliente es requerido";
-                return false;
-            }
-
-            if(this.date_note == ""){
-                this.error = true;
-                this.error_mesagge = "Selecciona una fecha";
-                return false;
-            }
-
-            */
 
             axios.post('/api/v1/employee', {
                 name : this.name,
